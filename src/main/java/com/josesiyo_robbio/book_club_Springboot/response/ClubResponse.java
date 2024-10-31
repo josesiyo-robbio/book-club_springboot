@@ -15,12 +15,13 @@ public class ClubResponse
     private String message;
 
     // Constructor
-    public ClubResponse(String name, int readTime, List<ParticipantDto> participants, ClubBookDto currentBook) {
+    public ClubResponse(Long id,String name, int readTime, List<ParticipantDto> participants, ClubBookDto currentBook) {
 
         this.name = name;
         this.readTime = readTime;
         this.participants = participants;
         this.currentBook = currentBook;
+        this.id = id;
     }
 
     // Getters and Setters

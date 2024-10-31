@@ -16,13 +16,20 @@ public class ClubController {
 
     @PostMapping("/create")
     public ResponseEntity<ClubResponse> createClub(@RequestBody ClubRequest clubRequest) {
-        createClubService.createClub(clubRequest);
+
+
+        Long clubId = createClubService.createClub(clubRequest);
+
+
 
         ClubResponse clubResponse = new ClubResponse(
+
+                clubId,
                 clubRequest.getName(),
                 clubRequest.getReadTime(),
                 clubRequest.getParticipants(),
                 clubRequest.getFirstBook()
+
         );
         clubResponse.setMessage("Club created successfully!");
 
