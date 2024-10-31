@@ -9,10 +9,6 @@ public class ClubBookDto
 
     @NotNull()
     @Positive()
-    private Long id;
-
-    @NotNull()
-    @Positive()
     private int clubId;
 
     @NotBlank()
@@ -22,21 +18,26 @@ public class ClubBookDto
     private String description;
 
     @NotBlank()
-    private Boolean isCurrent;
+    private boolean isCurrent;
+
+    // Constructor
+    public ClubBookDto()
+    {
+        this.isCurrent = true;
+    }
+
 
 
     //GETTERS
-    public Long getId()             { return id;            }
-    public Boolean getCurrent()     { return isCurrent;     }
+    public boolean isCurrent()      { return isCurrent;     }
     public String getDescription()  { return description;   }
     public String getName()         { return name;          }
     public int getClubId()          { return clubId;        }
 
 
     //SETTERS
-    public void setId(Long id)                              { this.id = id;                     }
     public void setClubId(int clubId)                       { this.clubId = clubId;             }
     public void setName(String name)                        { this.name = name;                 }
     public void setDescription(String description)          { this.description = description;   }
-    public void setCurrent(Boolean current)                 { isCurrent = current;              }
+    public void setCurrent(boolean current)                 { isCurrent = current;              }
 }

@@ -18,12 +18,13 @@ public class ClubBook
     private String description;
 
     @Column(name = "is_current")
-    private Boolean isCurrent;
+    private boolean isCurrent;
+
 
 
     //GETTERS
     public Long getId()             { return id;            }
-    public Boolean getCurrent()     { return isCurrent;     }
+    public boolean getCurrent()     { return isCurrent;     }
     public String getDescription()  { return description;   }
     public String getName()         { return name;          }
     public int getClubId()          { return clubId;        }
@@ -34,7 +35,7 @@ public class ClubBook
     public void setClubId(int clubId)                       { this.clubId = clubId;             }
     public void setName(String name)                        { this.name = name;                 }
     public void setDescription(String description)          { this.description = description;   }
-    public void setCurrent(Boolean current)                 { isCurrent = current;              }
+    public void setCurrent(boolean current)                 { isCurrent = current;              }
 
 
 
