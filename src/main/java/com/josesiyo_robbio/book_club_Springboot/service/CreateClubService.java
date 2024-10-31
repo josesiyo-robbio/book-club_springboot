@@ -9,15 +9,20 @@ import com.josesiyo_robbio.book_club_Springboot.repository.ClubBookRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubMemberRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubRepository;
 import com.josesiyo_robbio.book_club_Springboot.request.ClubRequest;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class CreateClubService
 {
+
 
     @Autowired
     private ClubRepository clubRepository;
@@ -27,6 +32,9 @@ public class CreateClubService
 
     @Autowired
     private ClubBookRepository clubBookRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @Transactional
     public Long createClub(ClubRequest request)
@@ -65,15 +73,17 @@ public class CreateClubService
 
             clubBookRepository.save(clubBook);
 
+            emailService.sendTokensEmail(club, participants);
+
             return club.getId();
         }
         catch (Exception e) {
             throw new RuntimeException("Error creating club", e);
         }
 
-
-
-
     }
+
+
+
 
 }
