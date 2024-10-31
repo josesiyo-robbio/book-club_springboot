@@ -12,7 +12,7 @@ public class ClubBook
     private Long id;
 
     @Column(name = "club_id")
-    private int clubId;
+    private Long clubId;
 
     private String name;
     private String description;
@@ -27,12 +27,12 @@ public class ClubBook
     public boolean getCurrent()     { return isCurrent;     }
     public String getDescription()  { return description;   }
     public String getName()         { return name;          }
-    public int getClubId()          { return clubId;        }
+    public Long getClubId()          { return clubId;        }
 
 
     //SETTERS
     public void setId(Long id)                              { this.id = id;                     }
-    public void setClubId(int clubId)                       { this.clubId = clubId;             }
+    public void setClubId(Long clubId)                       { this.clubId = clubId;             }
     public void setName(String name)                        { this.name = name;                 }
     public void setDescription(String description)          { this.description = description;   }
     public void setCurrent(boolean current)                 { isCurrent = current;              }

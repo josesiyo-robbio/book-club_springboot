@@ -9,7 +9,7 @@ public class ClubBookDto
 
     @NotNull()
     @Positive()
-    private int clubId;
+    private Long clubId;
 
     @NotBlank()
     private String name;
@@ -32,11 +32,11 @@ public class ClubBookDto
     public boolean isCurrent()      { return isCurrent;     }
     public String getDescription()  { return description;   }
     public String getName()         { return name;          }
-    public int getClubId()          { return clubId;        }
+    public Long getClubId()          { return clubId;        }
 
 
     //SETTERS
-    public void setClubId(int clubId)                       { this.clubId = clubId;             }
+    public void setClubId(Long clubId)                       { this.clubId = clubId;             }
     public void setName(String name)                        { this.name = name;                 }
     public void setDescription(String description)          { this.description = description;   }
     public void setCurrent(boolean current)                 { isCurrent = current;              }

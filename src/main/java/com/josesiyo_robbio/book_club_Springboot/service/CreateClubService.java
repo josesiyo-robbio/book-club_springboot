@@ -1,8 +1,11 @@
 package com.josesiyo_robbio.book_club_Springboot.service;
 
+import com.josesiyo_robbio.book_club_Springboot.dto.ClubBookDto;
 import com.josesiyo_robbio.book_club_Springboot.dto.ParticipantDto;
 import com.josesiyo_robbio.book_club_Springboot.model.Club;
+import com.josesiyo_robbio.book_club_Springboot.model.ClubBook;
 import com.josesiyo_robbio.book_club_Springboot.model.ClubMember;
+import com.josesiyo_robbio.book_club_Springboot.repository.ClubBookRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubMemberRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubRepository;
 import com.josesiyo_robbio.book_club_Springboot.request.ClubRequest;
@@ -18,8 +21,12 @@ public class CreateClubService
 
     @Autowired
     private ClubRepository clubRepository;
+
     @Autowired
     private ClubMemberRepository clubMemberRepository;
+
+    @Autowired
+    private ClubBookRepository clubBookRepository;
 
     @Transactional
     public void createClub(ClubRequest request)
@@ -46,6 +53,19 @@ public class CreateClubService
 
             }
         }
+
+        //trans #3
+        ClubBookDto clubBookDto = request.getFirstBook();
+
+        ClubBook clubBook = new ClubBook();
+        clubBook.setName(clubBookDto.getName());
+        clubBook.setDescription(clubBookDto.getDescription());
+        clubBook.setClubId(club.getId());
+        clubBook.setCurrent(true);
+
+        clubBookRepository.save(clubBook);
+
+
     }
 
 }
