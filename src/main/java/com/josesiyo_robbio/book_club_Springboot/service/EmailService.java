@@ -2,25 +2,23 @@ package com.josesiyo_robbio.book_club_Springboot.service;
 
 import com.josesiyo_robbio.book_club_Springboot.dto.ParticipantDto;
 import com.josesiyo_robbio.book_club_Springboot.model.Club;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmailService {
-
     @Autowired
     private JavaMailSender mailSender;
 
-    @Value("${jwt.secret}")
-    private String secretKey;
+    @Autowired
+    private JwtService jwtService;
 
     public void sendTokensEmail(Club club, List<ParticipantDto> participants) {
         for (ParticipantDto participant : participants) {
@@ -30,13 +28,10 @@ public class EmailService {
     }
 
     private String generateToken(Long clubId, String email) {
-        return Jwts.builder()
-                .setSubject(email)
-                .claim("clubId", clubId)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // Expira en 1 día
-                .signWith(SignatureAlgorithm.HS256, secretKey) // Usando el secretKey inyectado
-                .compact();
+        Map<String, String> claims = new HashMap<>();
+        claims.put("clubId", clubId.toString());
+        claims.put("email", email);
+        return jwtService.generateToken(claims);
     }
 
     private void sendEmail(String to, String token) {
