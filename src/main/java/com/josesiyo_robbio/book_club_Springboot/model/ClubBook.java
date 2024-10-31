@@ -3,7 +3,7 @@ package com.josesiyo_robbio.book_club_Springboot.model;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 
-@Enabled
+@Entity
 @Table(name = "club_book")
 public class ClubBook
 {
