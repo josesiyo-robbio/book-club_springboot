@@ -12,7 +12,11 @@ public class Club
     private Long id;
 
     private String name;
+
+    @Column(name = "read_time")
     private int readTime;
+
+    @Column(name = "numberparticipants")
     private int numberParticipants;
     private int reviews;
 
