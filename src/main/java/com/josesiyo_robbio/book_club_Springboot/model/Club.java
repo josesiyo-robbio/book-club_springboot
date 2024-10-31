@@ -1,6 +1,5 @@
 package com.josesiyo_robbio.book_club_Springboot.model;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +17,7 @@ public class Club
 
     @Column(name = "numberparticipants")
     private int numberParticipants;
+
     private int reviews;
 
 
