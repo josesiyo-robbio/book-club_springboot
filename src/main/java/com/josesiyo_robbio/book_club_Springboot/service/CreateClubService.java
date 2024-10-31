@@ -45,6 +45,7 @@ public class CreateClubService
             Club club = new Club();
             club.setName(request.getName());
             club.setReadTime(request.getReadTime());
+            club.setNumberParticipants(request.getParticipants().size());
 
             clubRepository.save(club);
 
