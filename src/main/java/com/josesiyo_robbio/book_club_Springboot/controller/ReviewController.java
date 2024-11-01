@@ -15,18 +15,23 @@ public class ReviewController {
 
     @PostMapping("/new")
     public ResponseEntity<?> newReview(@RequestHeader("Authorization") String authHeader, @RequestBody NewReviewRequest newReviewRequest) {
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+
+        if (authHeader == null || !authHeader.startsWith("Bearer "))
+        {
             return ResponseEntity.status(401).body("Token missing or invalid");
         }
 
-        String token = authHeader.substring(7); // Eliminar 'Bearer ' del token
+        String token = authHeader.substring(7);
 
-        try {
+        try
+        {
             Long id = newReviewService.newReview(token, newReviewRequest);
             ReviewResponse reviewResponse = new ReviewResponse(id, newReviewRequest.getContent().getContent());
             reviewResponse.setMessage("Review successfully created");
             return ResponseEntity.ok(reviewResponse);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return ResponseEntity.status(500).body("Failed to create review: " + e.getMessage());
         }
     }
