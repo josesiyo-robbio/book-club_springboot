@@ -3,18 +3,26 @@ package com.josesiyo_robbio.book_club_Springboot.service;
 import com.josesiyo_robbio.book_club_Springboot.dto.ClubBookDto;
 import com.josesiyo_robbio.book_club_Springboot.model.Club;
 import com.josesiyo_robbio.book_club_Springboot.model.ClubBook;
+import com.josesiyo_robbio.book_club_Springboot.model.ClubBookVote;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubBookRepository;
+import com.josesiyo_robbio.book_club_Springboot.repository.ClubBookVoteRepository;
 import com.josesiyo_robbio.book_club_Springboot.request.AddBookRequest;
 import io.jsonwebtoken.Claims;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AddBookService
 {
+    private static final Logger logger = LoggerFactory.getLogger(NewReviewService.class);
     @Autowired
     private ClubBookRepository clubBookRepository;
+
+    @Autowired
+    private ClubBookVoteRepository voteRepository;
 
     @Autowired
     private JwtService jwtService;
@@ -44,8 +52,15 @@ public class AddBookService
             clubBook.setDescription(clubBookDto.getDescription());
             clubBook.setClubId(clubId);
             clubBook.setCurrent(false);
-
             clubBookRepository.save(clubBook);
+
+            ClubBookVote clubBookVote = new ClubBookVote();
+            clubBookVote.setBookId(clubBook.getId());
+            clubBookVote.setClubId(clubId);
+
+            voteRepository.save(clubBookVote);
+
+
             return clubId;
 
 
