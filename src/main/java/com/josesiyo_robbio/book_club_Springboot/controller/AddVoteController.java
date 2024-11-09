@@ -1,6 +1,7 @@
 package com.josesiyo_robbio.book_club_Springboot.controller;
 
 
+import com.josesiyo_robbio.book_club_Springboot.dto.ClubBookVoteDto;
 import com.josesiyo_robbio.book_club_Springboot.request.AddVoteRequest;
 import com.josesiyo_robbio.book_club_Springboot.request.NewReviewRequest;
 import com.josesiyo_robbio.book_club_Springboot.response.AddVoteResponse;
@@ -17,23 +18,26 @@ public class AddVoteController
     private AddVoteService addVoteService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> newReview(@RequestHeader("Authorization") String authHeader, @RequestBody AddVoteRequest addVoteRequest)
+    public ResponseEntity<AddVoteResponse> newReview(@RequestHeader("Authorization") String authHeader, @RequestBody AddVoteRequest addVoteRequest)
     {
         if (authHeader == null || !authHeader.startsWith("Bearer "))
         {
-            return ResponseEntity.status(401).body("Token missing or invalid");
+            return ResponseEntity.badRequest().build();
         }
 
         String token = authHeader.substring(7);
 
-        try
-        {
-            Long id = addVoteService.addVote(token, addVoteRequest);
-            return ResponseEntity.ok(new AddVoteResponse(id));
-        }
-        catch (Exception e)
-        {
-            return ResponseEntity.status(500).body("Failed to create review: " + e.getMessage());
-        }
+        //convert request to dto
+        ClubBookVoteDto clubBookVoteDto = new ClubBookVoteDto();
+        clubBookVoteDto.setBookId(addVoteRequest.getBookId());
+
+        //call the service for results
+        ClubBookVoteDto addVote = addVoteService.addVote(token, clubBookVoteDto);
+
+        //create response
+        AddVoteResponse response = new AddVoteResponse(addVote.getId());
+        response.setMessage("Successfully added vote");
+
+        return ResponseEntity.ok(response);
     }
 }
