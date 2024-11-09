@@ -150,15 +150,8 @@ dependencies {
 }
 ```
 
-## Future Enhancements
-- Integration with external book APIs
-- Reading progress tracking
-- Book recommendations system
-- Real-time notifications
-- Meeting scheduler integration
 
 ## Contributing
 Feel free to submit issues and enhancement requests.
 
 ## License
-[Your chosen license]
