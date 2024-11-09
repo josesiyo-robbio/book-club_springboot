@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ClubBookDto
 {
+    @NotNull()
     private Long id;
-
 
     @NotNull()
     @Positive()
@@ -37,29 +37,23 @@ public class ClubBookDto
     }
 
 
-
     //GETTERS
-    public boolean isCurrent()      { return isCurrent;     }
-    public String getDescription()  { return description;   }
-    public String getName()         { return name;          }
+    public boolean isCurrent()                      { return isCurrent;     }
+    public String getDescription()                  { return description;   }
+    public String getName()                         { return name;          }
     public int getReadTime()                        { return readTime;      }
     public List<ParticipantDto> getParticipants()   { return participants;  }
     public ClubBookDto getFirstBook()               { return firstBook;     }
-
+    public Long getId() { return id; }
 
 
     //SETTERS
-
-    public void setName(String name)                        { this.name = name;                 }
-    public void setDescription(String description)          { this.description = description;   }
-    public void setCurrent(boolean current)                 { isCurrent = current;              }
+    public void setName(String name)                                    { this.name = name;                     }
+    public void setDescription(String description)                      { this.description = description;       }
+    public void setCurrent(boolean current)                             { isCurrent = current;                  }
     public void setReadTime(int readTime)                               { this.readTime = readTime;             }
     public void setParticipants(List<ParticipantDto> participants)      { this.participants = participants;     }
     public void setFirstBook(ClubBookDto clubBook)                      { this.firstBook = clubBook;            }
+    public void setId(Long id)                                          { this.id = id;                         }
 
-    public Long getId() { return id; }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

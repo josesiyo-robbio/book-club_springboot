@@ -30,18 +30,16 @@ public class AddBookService
     {
         try
         {
-
             //extract data from token
             Claims claims = jwtService.extractAllClaims(token);
             String clubIdStr = claims.get("clubId", String.class);
             String sub = claims.get("email", String.class);
-
             if (clubIdStr == null || sub == null)
             {
                 throw new RuntimeException("Missing required claims in token");
             }
-
             Long clubId = Long.parseLong(clubIdStr);
+
 
             ClubBook clubBook = new ClubBook();
             clubBook.setName(clubBookDto.getName());
@@ -50,10 +48,10 @@ public class AddBookService
             clubBook.setCurrent(false);
             clubBookRepository.save(clubBook);
 
+
             ClubBookVote clubBookVote = new ClubBookVote();
             clubBookVote.setBookId(clubBook.getId());
             clubBookVote.setClubId(clubId);
-
             voteRepository.save(clubBookVote);
 
             clubBookDto.setId(clubBook.getId());
@@ -63,6 +61,6 @@ public class AddBookService
         {
             throw new RuntimeException("Error creating club", e);
         }
-
     }
+
 }

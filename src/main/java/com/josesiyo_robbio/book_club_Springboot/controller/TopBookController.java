@@ -21,4 +21,5 @@ public class TopBookController
         Long topBookId = topBookService.getAndUpdateTopBook(clubId);
         return ResponseEntity.ok("Top book ID: " + topBookId);
     }
+    
 }

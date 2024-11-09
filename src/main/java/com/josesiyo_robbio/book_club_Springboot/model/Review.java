@@ -2,6 +2,8 @@ package com.josesiyo_robbio.book_club_Springboot.model;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
 @Table(name = "reviews")
 public class Review
@@ -31,6 +33,5 @@ public class Review
     public void setClubId(Long clubId)      { this.clubId = clubId;     }
     public void setMemberId(Long memberId)  { this.memberId = memberId; }
     public void setContent(String content)  { this.content = content;   }
-
 
 }

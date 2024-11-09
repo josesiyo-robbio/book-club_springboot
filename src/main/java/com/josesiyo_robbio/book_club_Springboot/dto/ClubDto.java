@@ -1,9 +1,10 @@
 package com.josesiyo_robbio.book_club_Springboot.dto;
 
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+
+
 
 public class ClubDto
 {
@@ -41,4 +42,5 @@ public class ClubDto
     public void setReadTime(int readTime)                       { this.readTime = readTime;                         }
     public void setNumberParticipants(int numberParticipants)   { this.numberParticipants = numberParticipants;     }
     public void setReviews(int reviews)                         { this.reviews = reviews;                           }
+
 }

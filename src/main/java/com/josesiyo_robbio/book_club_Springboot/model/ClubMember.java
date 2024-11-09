@@ -2,6 +2,8 @@ package com.josesiyo_robbio.book_club_Springboot.model;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
 @Table(name = "club_member")
 public class ClubMember
@@ -33,6 +35,5 @@ public class ClubMember
     public void setEmail(String email)      { this.email = email;   }
     public void setClubId(Long clubId)      { this.clubId = clubId; }
     public void setStatus(String status)    { this.status = status; }
-
 
 }

@@ -17,6 +17,7 @@ public class ReviewController
     @Autowired
     private NewReviewService newReviewService;
 
+
     @PostMapping("/new")
     public ResponseEntity<ReviewResponse> newReview(@RequestHeader("Authorization") String authHeader, @RequestBody NewReviewRequest newReviewRequest) {
 
@@ -26,13 +27,16 @@ public class ReviewController
         }
         String token = authHeader.substring(7);
 
+
         //convert request to dto
         ReviewDto reviewDto = new ReviewDto();
         reviewDto.setContent(newReviewRequest.getContent());
 
+
         //call the service for results
         ReviewDto addReview =  newReviewService.newReview(token, reviewDto);
         addReview.setContent(newReviewRequest.getContent());
+
 
         //create response
         ReviewResponse response = new ReviewResponse();
@@ -40,4 +44,5 @@ public class ReviewController
 
         return ResponseEntity.ok(response);
     }
+
 }

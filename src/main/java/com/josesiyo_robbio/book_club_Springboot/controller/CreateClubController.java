@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @RequestMapping("/api/clubs")
-public class CreateClubController {
+public class CreateClubController
+{
 
     @Autowired
     private CreateClubService createClubService;
@@ -23,7 +26,6 @@ public class CreateClubController {
     @PostMapping("/create")
     public ResponseEntity<CreateClubResponse> createClub(@RequestBody @Valid CreateClubRequest createClubRequest)
     {
-
         //convert request to dto
         ClubBookDto clubBookDto = new ClubBookDto();
         clubBookDto.setName(createClubRequest.getName());
@@ -47,9 +49,9 @@ public class CreateClubController {
                 createdClub.getReadTime(),
                 createdClub.getParticipants(),
                 createdClub.getFirstBook()
-
         );
 
         return ResponseEntity.ok(response);
     }
+
 }

@@ -5,8 +5,9 @@ import com.josesiyo_robbio.book_club_Springboot.dto.ParticipantDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-
 import java.util.List;
+
+
 
 public class CreateClubRequest
 {
@@ -35,6 +36,5 @@ public class CreateClubRequest
     public void setReadTime(int readTime)                               { this.readTime = readTime;             }
     public void setParticipants(List<ParticipantDto> participants)      { this.participants = participants;     }
     public void setFirstBook(ClubBookDto clubBook)                      { this.firstBook = clubBook;            }
-
 
 }

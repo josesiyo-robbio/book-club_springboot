@@ -1,10 +1,9 @@
 package com.josesiyo_robbio.book_club_Springboot.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+
+
 
 public class ClubBookVoteDto
 {

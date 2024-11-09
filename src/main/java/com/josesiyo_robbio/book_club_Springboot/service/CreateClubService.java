@@ -11,14 +11,13 @@ import com.josesiyo_robbio.book_club_Springboot.repository.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
+
 
 @Service
 public class CreateClubService
 {
-
-
     @Autowired
     private ClubRepository clubRepository;
 
@@ -58,6 +57,7 @@ public class CreateClubService
                 }
             }
 
+
             //trans #3 insert first book into table club_book
             ClubBook clubBook = new ClubBook();
             clubBook.setName(clubBookDto.getFirstBook().getName());
@@ -75,16 +75,12 @@ public class CreateClubService
         {
             throw new RuntimeException("Error creating club", e);
         }
-
     }
+
 
     public void sendTokensEmail(ClubBookDto club, List<ParticipantDto> participants)
     {
         emailService.sendTokensEmail(club, participants);
     }
-
-
-
-
 
 }

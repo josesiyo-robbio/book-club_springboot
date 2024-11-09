@@ -3,12 +3,13 @@ package com.josesiyo_robbio.book_club_Springboot.service;
 import com.josesiyo_robbio.book_club_Springboot.dto.ClubBookVoteDto;
 import com.josesiyo_robbio.book_club_Springboot.model.ClubBookVote;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubBookVoteRepository;
-import com.josesiyo_robbio.book_club_Springboot.request.AddVoteRequest;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
+
+
 
 @Service
 public class AddVoteService
@@ -33,6 +34,7 @@ public class AddVoteService
             }
             Long clubId = Long.parseLong(clubIdStr);
 
+
             Optional<ClubBookVote> existingVote = clubBookVoteRepository.findByClubIdAndBookId(clubId, clubBookVoteDto.getBookId());
             ClubBookVote clubBookVote;
             if (existingVote.isEmpty()) {
@@ -54,9 +56,9 @@ public class AddVoteService
 
                 clubBookVote.setVoteCount(clubBookVote.getVoteCount() + 1);
             }
-
             clubBookVoteRepository.save(clubBookVote);
             clubBookVoteDto.setId(clubBookVote.getId());
+
 
             return clubBookVoteDto;
         }
@@ -65,4 +67,5 @@ public class AddVoteService
             throw new RuntimeException("Error adding vote", e);
         }
     }
+
 }

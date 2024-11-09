@@ -2,6 +2,8 @@ package com.josesiyo_robbio.book_club_Springboot.model;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
 @Table(name = "club_book_vote")
 public class ClubBookVote
@@ -32,10 +34,5 @@ public class ClubBookVote
     public void setClubId(Long clubId)          { this.clubId = clubId;         }
     public void setBookId(Long bookId)          { this.bookId = bookId;         }
     public void setVoteCount(int voteCount)     { this.voteCount = voteCount;   }
-
-
-
-
-
 
 }

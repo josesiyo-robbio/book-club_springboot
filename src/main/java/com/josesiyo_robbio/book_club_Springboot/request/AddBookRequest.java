@@ -7,22 +7,14 @@ public class AddBookRequest
     private String bookName;
     private String description;
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
+    //GETTERS
+    public String getDescription()      { return description;   }
+    public String getBookName()         { return bookName;      }
 
 
+    //SETTERS
+    public void setBookName(String bookName)        { this.bookName = bookName;         }
+    public void setDescription(String description)  { this.description = description;   }
 
 }

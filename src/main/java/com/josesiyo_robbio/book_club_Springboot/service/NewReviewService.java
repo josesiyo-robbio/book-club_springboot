@@ -7,13 +7,13 @@ import com.josesiyo_robbio.book_club_Springboot.model.Review;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubMemberRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ReviewRepository;
-import com.josesiyo_robbio.book_club_Springboot.request.NewReviewRequest;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 
 @Service
@@ -30,6 +30,7 @@ public class NewReviewService
     @Autowired
     private JwtService jwtService;
 
+
     @Transactional
     public ReviewDto newReview(String token, ReviewDto reviewDto)
     {
@@ -43,9 +44,7 @@ public class NewReviewService
             {
                 throw new RuntimeException("Missing required claims in token");
             }
-
             Long clubId = Long.parseLong(clubIdStr);
-
             logger.info("Extracted clubId: {}", clubId);
             logger.info("Extracted sub: {}", email);
 
@@ -63,14 +62,15 @@ public class NewReviewService
             reviewRepository.save(review);
             logger.info("Review saved with id: {}", review.getId());
 
+
             // TRANSACTION #2 // adding *1 to review counter
             Club club = clubRepository.findById(clubId).orElseThrow(() -> new RuntimeException("Club not found"));
             club.setReviews(club.getReviews() + 1);
             clubRepository.save(club);
             logger.info("Club updated with new review count: {}", club.getReviews());
-
-
             reviewDto.setId(review.getId());
+
+
             return reviewDto;
         }
         catch (Exception e)
@@ -79,4 +79,5 @@ public class NewReviewService
             throw new RuntimeException("Error creating review", e);
         }
     }
+
 }

@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+
+
 public class ClubMemberDto
 {
     @NotNull()
@@ -38,4 +40,5 @@ public class ClubMemberDto
     public void setEmail(String email)      { this.email = email;   }
     public void setClubId(Long clubId)      { this.clubId = clubId; }
     public void setStatus(String status)    { this.status = status; }
+
 }
