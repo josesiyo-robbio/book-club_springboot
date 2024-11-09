@@ -12,7 +12,6 @@ public class ClubResponse
     private int readTime;
     private List<ParticipantDto> participants;
     private ClubBookDto currentBook;
-    private String message;
 
     // Constructor
     public ClubResponse(Long id,String name, int readTime, List<ParticipantDto> participants, ClubBookDto currentBook) {
@@ -24,28 +23,14 @@ public class ClubResponse
         this.id = id;
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
+    // Getters and Setters
+    public Long getId() { return id; }
     public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
     public int getReadTime() { return readTime; }
-    public void setReadTime(int readTime) { this.readTime = readTime; }
-
     public List<ParticipantDto> getParticipants() { return participants; }
-    public void setParticipants(List<ParticipantDto> participants) { this.participants = participants; }
-
     public ClubBookDto getCurrentBook() { return currentBook; }
-    public void setCurrentBook(ClubBookDto currentBook) { this.currentBook = currentBook; }
 
-    // Getters y Setters
-    public String getMessage() {
-        return message;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

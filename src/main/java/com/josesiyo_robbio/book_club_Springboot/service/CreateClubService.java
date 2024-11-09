@@ -37,52 +37,57 @@ public class CreateClubService
     private EmailService emailService;
 
     @Transactional
-    public Long createClub(ClubRequest request)
+    public ClubBookDto createClub(ClubBookDto clubBookDto)
     {
-        System.out.println("Creating club...");
-        try {
-            //trans #1
+        try
+        {
+            //trans #1 create a new club in table club
             Club club = new Club();
-            club.setName(request.getName());
-            club.setReadTime(request.getReadTime());
-            club.setNumberParticipants(request.getParticipants().size());
-
+            club.setName(clubBookDto.getName());
+            club.setReadTime(clubBookDto.getReadTime());
+            club.setNumberParticipants(clubBookDto.getParticipants().size());
             clubRepository.save(club);
 
-            //trans #2
-            List<ParticipantDto> participants = request.getParticipants();
-            if (participants != null) {
-                for (ParticipantDto participantDto : participants) {
+
+            //trans #2 insert members to table club_member
+            List<ParticipantDto> participants = clubBookDto.getParticipants();
+            if (participants != null)
+            {
+                for (ParticipantDto participantDto : participants)
+                {
                     ClubMember participant = new ClubMember();
                     participant.setName(participantDto.getName());
                     participant.setEmail(participantDto.getEmail());
                     participant.setClubId(club.getId());
-
                     clubMemberRepository.save(participant);
-
                 }
             }
 
-            //trans #3
-            ClubBookDto clubBookDto = request.getFirstBook();
-
+            //trans #3 insert first book into table club_book
             ClubBook clubBook = new ClubBook();
-            clubBook.setName(clubBookDto.getName());
-            clubBook.setDescription(clubBookDto.getDescription());
+            clubBook.setName(clubBookDto.getFirstBook().getName());
+            clubBook.setDescription(clubBookDto.getFirstBook().getDescription());
             clubBook.setClubId(club.getId());
             clubBook.setCurrent(true);
-
             clubBookRepository.save(clubBook);
 
-            emailService.sendTokensEmail(club, participants);
+            // Return the clubBookDto with the clubId now assigned
+            clubBookDto.setId(club.getId());
 
-            return club.getId();
+            return clubBookDto;
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             throw new RuntimeException("Error creating club", e);
         }
 
     }
+
+    public void sendTokensEmail(ClubBookDto club, List<ParticipantDto> participants)
+    {
+        emailService.sendTokensEmail(club, participants);
+    }
+
 
 
 
