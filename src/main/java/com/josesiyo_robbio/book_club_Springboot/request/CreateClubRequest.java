@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 
-public class ClubRequest
+public class CreateClubRequest
 {
     @NotBlank()
     private String name;

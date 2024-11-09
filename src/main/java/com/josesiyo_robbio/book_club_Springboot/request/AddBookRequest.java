@@ -1,15 +1,28 @@
 package com.josesiyo_robbio.book_club_Springboot.request;
 
-import com.josesiyo_robbio.book_club_Springboot.dto.ClubBookDto;
-import jakarta.validation.constraints.NotNull;
+
 
 public class AddBookRequest
 {
+    private String bookName;
+    private String description;
 
-    @NotNull()
-    private ClubBookDto firstBook;
+    public String getDescription() {
+        return description;
+    }
 
-    public ClubBookDto getFirstBook()               { return firstBook;     }
-    public void setFirstBook(ClubBookDto clubBook)                      { this.firstBook = clubBook; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+
 
 }

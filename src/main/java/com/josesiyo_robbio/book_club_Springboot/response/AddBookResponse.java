@@ -8,22 +8,31 @@ import java.util.List;
 public class AddBookResponse
 {
 
-    private ClubBookDto currentBook;
+
     private Long id;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
+
 
     // Constructor
-    public AddBookResponse(Long id, ClubBookDto currentBook) {
-
-
-        this.currentBook = currentBook;
-
+    public AddBookResponse(Long id)
+    {
         this.id = id;
+
 
     }
 
 
-    public ClubBookDto getCurrentBook() { return currentBook; }
-    public void setCurrentBook(ClubBookDto currentBook) { this.currentBook = currentBook; }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

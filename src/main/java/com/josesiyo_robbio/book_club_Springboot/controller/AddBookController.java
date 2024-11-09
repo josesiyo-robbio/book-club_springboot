@@ -1,8 +1,8 @@
 package com.josesiyo_robbio.book_club_Springboot.controller;
 
 
+import com.josesiyo_robbio.book_club_Springboot.dto.ClubBookDto;
 import com.josesiyo_robbio.book_club_Springboot.request.AddBookRequest;
-import com.josesiyo_robbio.book_club_Springboot.request.NewReviewRequest;
 import com.josesiyo_robbio.book_club_Springboot.response.AddBookResponse;
 import com.josesiyo_robbio.book_club_Springboot.service.AddBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +17,34 @@ public class AddBookController
     private  AddBookService addBookService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> newReview(@RequestHeader("Authorization") String authHeader, @RequestBody AddBookRequest addBookRequest)
+    public ResponseEntity<AddBookResponse> addBook(@RequestHeader("Authorization") String authHeader, @RequestBody AddBookRequest addBookRequest)
     {
         if (authHeader == null || !authHeader.startsWith("Bearer "))
         {
-            return ResponseEntity.status(401).body("Token missing or invalid");
+            return ResponseEntity.badRequest().build();
         }
 
         String token = authHeader.substring(7);
 
+        //convert request to dto
+        ClubBookDto clubBookDto = new ClubBookDto();
+        clubBookDto.setName(addBookRequest.getBookName());
+        clubBookDto.setDescription(addBookRequest.getDescription());
 
-        Long clubId = addBookService.addBook(token,addBookRequest);
 
-        AddBookResponse addBookResponse = new AddBookResponse(
-                clubId,
-                addBookRequest.getFirstBook()
+        //call the service for results
+        ClubBookDto addBook = addBookService.addBook(token, clubBookDto);
 
-        );
-        return ResponseEntity.status(201).body(addBookResponse);
+
+        //create response
+        AddBookResponse response = new AddBookResponse( addBook.getId() );
+        response.setMessage("Successfully added book");
+
+        return ResponseEntity.ok(response);
+
+
+
+
     }
 
 

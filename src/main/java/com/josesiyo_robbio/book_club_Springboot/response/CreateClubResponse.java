@@ -5,7 +5,7 @@ import com.josesiyo_robbio.book_club_Springboot.dto.ParticipantDto;
 
 import java.util.List;
 
-public class ClubResponse
+public class CreateClubResponse
 {
     private Long id;
     private String name;
@@ -14,7 +14,7 @@ public class ClubResponse
     private ClubBookDto currentBook;
 
     // Constructor
-    public ClubResponse(Long id,String name, int readTime, List<ParticipantDto> participants, ClubBookDto currentBook) {
+    public CreateClubResponse(Long id, String name, int readTime, List<ParticipantDto> participants, ClubBookDto currentBook) {
 
         this.name = name;
         this.readTime = readTime;

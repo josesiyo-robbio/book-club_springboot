@@ -8,15 +8,10 @@ import com.josesiyo_robbio.book_club_Springboot.model.ClubMember;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubBookRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubMemberRepository;
 import com.josesiyo_robbio.book_club_Springboot.repository.ClubRepository;
-import com.josesiyo_robbio.book_club_Springboot.request.ClubRequest;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
