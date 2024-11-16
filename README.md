@@ -1,4 +1,4 @@
-# Book Club API
+# Book Club
 
 ## Overview
 This REST API is designed to manage a book club platform, allowing users to create reading clubs, add books, manage votes, and share reviews. Built with Spring Boot, it follows REST architecture principles and best practices.
@@ -154,4 +154,4 @@ dependencies {
 ## Contributing
 Feel free to submit issues and enhancement requests.
 
-## License
+
